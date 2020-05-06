@@ -1,0 +1,109 @@
+.movieForm-main{
+
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    background-image: url("https://wallpaperaccess.com/full/300507.jpg");
+    background-position: center bottom;
+    background-size: cover;
+}
+
+.form-main{
+
+    position: relative;
+    grid-column: 5/-5;
+    grid-row: 2/-2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-left: 0.5px white solid;
+    padding-left: 10px;
+}
+
+.form-main h1{
+
+    font-size: 50px;
+    color: orange;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: normal;
+
+}
+
+.form-main button{
+
+    color:  white;
+    border: 0.5px orange solid;
+    padding: 7px;
+    font-size: 17px;
+    text-transform: uppercase;
+    background-color: transparent;
+}
+
+.input-field{
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+
+
+.input-field label{
+
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+    
+}
+
+.input-field input{
+
+    position: relative;
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    border-bottom: 1px white solid;
+}
+
+
+.input-field input[type = "file"]{
+
+    display: none
+}
+
+/*************************************************************************************************************************************/
+
+@media only screen and (max-width : 768px){
+
+
+      .form-main{
+
+        grid-column: 4/-4;
+      }
+}
+
+@media only screen and (max-width : 425px){
+
+    .form-main{
+
+        grid-column: 3/-3;
+    
+    }
+
+    .form-main h1{
+
+        font-size: 40px;
+    }
+
+    .input-field label{
+
+        font-size: 16px;
+    }
+}

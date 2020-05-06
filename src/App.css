@@ -1,33 +1,1096 @@
-.App {
-  text-align: center;
+@import "https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap";
+
+@import "./styling/MainPage.css";
+@import "./styling/Section.css";
+@import "./styling/Content.css";
+@import "./styling/Footer.css";
+@import "./styling/Header.css";
+@import "./styling/Moviepage.css";
+@import "./styling/MovieContent.css";
+@import "./styling/MovieForm.css";
+
+
+
+body{
+
+    margin:0;
+    padding: 0;
+    overflow-y: auto;
+    background-color: #1b1b1b;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+*{
+
+    box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/*
+
+.submain1{
+
+    display : flex ;
+    width : 100% ;
+    height : 9vh ;
+    background-color :#0C0032; 
+    align-items : center ; 
+    justify-content : space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.submain1-part1,.submain1-part2,.submain1-part3{
+
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    width : 15% ;
+    height : 100%;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.submain1-part3-part1{
+
+ 
+    width: 60%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+   
 }
+
+.submain1-part3-part2{
+
+
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+}
+
+
+
+.main{
+
+    display : "flex"; 
+    width : 100%; 
+    height : auto;
+    flex-direction : column ; 
+    background-color : #1A1A1D; 
+    overflow-y : hidden;
+   
+    
+
+}
+
+.footer{
+
+    display: flex;
+    width: 100%;
+    height: 20vh;
+    background-color: #E15D44;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-submain1{
+
+    
+    width: 35%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+}
+
+.footer-submain1 a{
+
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+}
+
+/* submain1-header */
+
+
+/* submain2-content */
+
+/*
+
+.submain2{
+
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    width : 100% ;
+    height : auto;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.submain2-part1{
+
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    width : 70% ;
+    color: white;
+    flex-direction: column;
+    font-size: 24px;
+    height: auto;
+ 
+       
+}
+
+.submain2-part1 p{
+
+   text-align: justify;
+
+}
+
+/* for loading animation */
+
+/*
+.loading-main{
+
+    display : flex ; 
+    width : 100% ; 
+    height : 91vh ; 
+    background-color : #2E4A62 ; 
+    justify-content : center ; 
+    align-items : center;
+    flex-direction: column;
+    color: white;
+}
+
+
+.loading{
+
+    width: 180px;
+    height: 180px;
+    box-shadow: 0px 0px 0px 2px white;
+    border: 4px #2E4A62 solid;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+}
+
+.loading::after{
+
+    content: "";
+    position:absolute;
+    top : -162%;
+    left : -45%;
+    width: 400px;
+    height: 400px;
+    background-color: rgba(0,0,255,0.3);
+    border-radius: 45%;
+    animation: animate 10s infinite;
+
+}
+
+.loading::before{
+
+    content: "";
+    position:absolute;
+    top : -162%;
+    left : -45%;
+    width: 400px;
+    height: 400px;
+    background-color: rgba(0,0,255,0.7);
+    border-radius: 36%;
+    animation: animate 10s infinite;
+
+}
+
+@keyframes animate{
+
+    0%  {
+         transform: rotate(0deg)
+
+    }
+    100% {
+
+         transform: rotate(360deg)
+    }
+}
+
+*/
+
+/*moviepage-main*/
+
+/*
+.moviepage-main{
+
+    display : flex ;
+    width : 100%; 
+    height : 40vh; 
+    overflow-y: auto ;   
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.moviepage-submain1{
+
+     width: 60%;
+     height: 17.5%;
+     display: flex;
+     justify-content: center;
+     align-items: center; 
+     margin-top:3%;
+}
+
+.moviepage-submain1-part1{
+
+   background-color:white;
+   width: 100%;
+   height: 100%;
+   border-radius: 6px;
+   display: flex;
+   align-items: flex-end;
+}
+
+.moviepage-submain2{
+
+    width: 10%;
+    height: 75%;
+    display: flex;
+    border-radius: 10px;
+    align-items: center; 
+    flex-direction: column;
+    margin-top:3%;
+}
+
+
+.moviepage-submain2-part1 button{
+
+    width:  75%;
+    height: 25%;
+    background-color: white;
+    color: black;
+    border: none;
+    border-bottom: 1px black solid;
+}
+
+
+.moviepage-submain3{
+
+    display : flex ;
+    width : 100%; 
+    flex-wrap: wrap;
+    color : white ; 
+    height: auto;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 3%;
+}
+
+/* for wallpaper */
+
+/*
+.submain3{
+
+    display : flex; 
+    width : 100% ; 
+    height : 75vh ; 
+    justify-content : center;
+    align-items: center;
+    
+    
+}
+
+.submain3-part1{
+
+     position: relative;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 100%;
+     height: 100%;
+     flex-direction: column;
+   
+    
+}
+
+.submain3-part1-sub1,.submain3-part1-sub2{
+
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    transition: 2s linear;
+    background-position: center;
+    background-attachment: fixed;
+     
+}
+
+.submain3-part1-sub1{
+
+    background-image: url("./components/oblivion.jpg");
+}
+
+.submain3-part1-sub2{
+
+    background-image: url("./components/avatar.jpg");
+}
+.profile-main{
+
+    background-image: url("./components/godzilla.png");
+    background-position: center;
+    background-size: cover;
+    width : 100%;
+    height: 100%;
+    filter: blur(5px);
+    position: absolute;
+
+}
+
+.profile-main2{
+
+    
+    width : 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.profile-main2-part1{
+
+    
+    width : 100%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.user-info{
+
+    
+    width : 30%;
+    height: 100%;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.user-info img{
+
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.user-movie{
+
+    
+    width : 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: 4%;
+}
+.heading{
+
+    position:absolute;
+    background-color: rgba(0,0,0,0.2);
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    filter: opacity(0);
+    transition: 2s ease-in-out;
+}
+
+
+
+.submain3:hover  .submain3-part1-sub2{
+
+    filter: blur(4px);
+
+}
+
+.submain3:hover  .submain3-part1-sub1{
+
+    filter: blur(4px);
+
+}
+
+.submain3:hover .change{
+
+    filter: blur(4px);
+}
+
+.submain3-part1:hover .heading{
+
+      filter: opacity(1);
+      
+}
+
+/* for movie template-singlemovie */
+
+/*
+.singlemovie-main{
+
+    display : flex; 
+    width : 270px; 
+    height : 510px; 
+    margin-left : 3%;
+    margin-top: 2%; 
+    box-shadow : 2px 3px 5px black; 
+    flex-direction : column; 
+    margin-right: 3%;
+    margin-bottom: 3%;
+}
+
+.singlemovie-submain1{
+
+
+    width : 100%; 
+    height : 90%;
+   
+}
+
+.profilepic{
+
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin-right: 8%;
+}
+*/
+/*
+.singlemovie-submain2{
+
+    display : flex;
+    width : 100% ; 
+    height : 10% ;
+    justify-content : center;
+    align-items : center;
+    background-color : rgba(0,0,0,0.5);
+    color: white;
+    flex-direction: column;
+   
+}
+
+.movielist span{
+
+    font-size: 20px;
+}
+
+.moviecontent-main{
+
+    width : 100%; 
+    height : 91vh; 
+    position : relative;
+    display: flex;
+    
+}
+
+.moviecontent-submain1{
+
+    position : absolute ; 
+    width : 100% ; 
+    height : 100%;
+    
+}
+
+.moviecontent-submain2{
+
+    position : absolute ;
+    display : flex ;
+    width : 100% ;
+    height : 100% ;    
+    flex-direction : column;
+    align-items: center;
+    justify-content: center;
+}
+
+.moviecontent-submain2-part1{
+
+    display : flex ; 
+    justify-content : center ; 
+    width : 400px ; 
+    height : 85% ;
+    box-shadow : 4px 4px 5px black ; 
+    border-radius : 6px ; 
+    position:absolute;
+    overflow: hidden;
+    
+}
+
+.moviecontent-submain2-part1 img{
+
+    transition: 2s ease-in-out;
+}
+
+.haha{
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    top:93%;
+    transition: 2s linear;
+    color : white;
+    background-color: rgba(0,0,0,0.2);
+}
+
+
+.dp{
+
+    width: 41px;
+    height: 41px;
+    border-radius: 50%;
+}
+.image{
+
+    width: 100%;
+    height: 100%;
+    transition: 2s ease-in-out;
+}
+
+.image img{
+
+    width: 100%;
+    height: 100%;
+}
+
+.moviecontent-submain2-part1:hover .haha{
+
+     top : 0%;
+}
+
+.moviecontent-submain2-part1:hover .image{
+
+    filter: blur(2px);
+}
+
+
+@media only screen and (max-width : 1680px){
+
+     .submain2-part1 p {
+
+        font-size: 20px;
+     }
+
+     .heading{
+
+        font-size: 55px;
+       
+     }
+
+     .moviecontent-submain2-part1{
+
+        width : 380px ; 
+        height : 660px ;
+     }
+
+     .submain1-part3-part2 button{
+
+        font-size: 10px;
+     }
+
+
+}
+
+
+@media only screen and(max-width : 1440px){
+
+     .heading{
+
+        font-size: 40px;
+        
+        
+     }
+
+     
+     .moviecontent-submain2-part1{
+
+        width : 360px ; 
+        height : 640px ;
+     }
+}
+
+@media only screen and (max-width : 1280px){
+
+      .submain1-part3 button{
+
+        font-size: 13px;
+
+      }
+
+      .submain1-part3-part2 button{
+
+        font-size: 8px;
+     }
+
+     .moviepage-submain2 button{
+
+        font-size: 13px;
+     }
+     .moviepage-submain2{
+
+        width: 13%;
+     }
+
+      .heading{
+
+        font-size: 40px;
+      
+       
+     }
+
+      .submain2-part1 p{
+
+        font-size: 19px;
+      } 
+
+      .moviecontent-submain2-part1{
+
+        width : 340px ; 
+        height : 620px ;
+     }
+
+}
+
+@media only screen and (max-width : 1100px){
+
+    .submain2-part1 p{
+
+      font-size: 17px;
+    } 
+
+
+    .footer-submain1{
+
+        width: 60%;
+    }
+
+
+    .heading{
+
+        font-size: 33px;
+       
+       
+     }
+
+     .moviecontent-submain2-part1{
+
+        width : 330px ; 
+        height : 610px ;
+     }
+
+
+}
+
+@media only screen and (max-width : 930px){
+
+    .submain2-part1 p{
+
+      font-size: 15.5px;
+    
+    }
+    
+    .profilepic{
+
+        width: 280px;
+        height: 280px;
+    }
+
+    .moviepage-submain2{
+
+        width: 16%;
+    }  
+
+    .heading{
+
+        font-size: 29px;
+        
+     }
+
+     .moviecontent-submain2-part1{
+
+        width : 320px ; 
+        height : 600px ;
+     }
+
+}
+
+
+@media only screen and (max-width : 780px){
+
+    .submain2-part1 p{
+
+      font-size: 14.5px;
+    }
+    .submain1-part2 h5{
+        font-size: 18px;
+    } 
+
+    .user-info img{
+
+        width :150px;
+        height: 150px;
+    }
+    
+    .user-info h1{
+
+        font-size: 28px;
+    }
+
+    .user-movie h4{
+
+        font-size: 20px;
+    }
+
+    .span{
+
+        font-size: 15px;
+    }
+
+    .profilepic{
+
+        width: 260px;
+        height: 260px;
+    }
+
+    .footer-submain1 a{
+
+        font-size: 20px;
+    }
+
+    .heading{
+
+        font-size: 25px;
+       
+     }
+    .submain1-part3{
+
+        margin-right: 2%;
+        width: 20%;
+    }
+
+    .submain3-part1-sub1{
+        visibility: hidden;
+
+    }
+
+    .submain3-part1-sub2{
+        visibility: hidden;
+
+    }
+
+
+   
+    .dp{
+
+        width: 36px;
+        height: 36px;
+    }
+    .submain1-part3 button{
+
+         width: 55px;
+         height: 33px;
+    }
+
+    .moviecontent-submain2-part1{
+
+        width : 300px ; 
+        height : 590px ;
+     }
+
+    
+}
+
+@media only screen and (max-width : 690px){
+
+    .submain2-part1 p{
+
+      font-size: 13.5px;
+    } 
+
+    .moviepage-submain2{
+
+        width: 17%;
+    }
+
+    .moviepage-submain2 button{
+
+        font-size: 11.5px;
+    }
+
+   
+
+    .profilepic{
+
+        width: 250px;
+        height: 250px;
+    }
+
+    .footer-submain1 a{
+
+        font-size: 18px;
+    }
+
+     
+     .heading{
+
+        font-size: 22px;
+        
+     }
+
+     .moviecontent-submain2-part1{
+
+        width : 290px ; 
+        height : 580px ;
+     }
+
+
+}
+
+
+@media only screen and (max-width : 610px){
+
+    .submain2-part1 p{
+
+      font-size: 12.5px;
+    }
+    
+    
+    .moviepage-submain2{
+
+        width: 19%;
+    }
+
+   
+
+    .profilepic{
+
+        width: 240px;
+        height: 240px;
+    }
+
+
+    .heading1{
+
+        font-size: 21px;
+    }
+
+    .heading{
+
+        font-size: 20px;
+        
+     }
+     .user-info img{
+
+        width :140px;
+        height: 140px;
+    }
+    
+    .user-info h1{
+
+        font-size: 26px;
+    }
+
+    .user-movie h4{
+
+        font-size: 18px;
+    }
+
+    .movielist span{
+
+        font-size: 15px;
+    }
+
+    .btn{
+
+        font-size: 10px;
+    }
+
+     .moviecontent-submain2-part1{
+
+        width : 280px ; 
+        height : 570px ;
+     }
+
+}
+
+@media only screen and (max-width : 520px){
+
+    .submain2-part1 p{
+
+      font-size: 11px;
+    }
+
+
+    .moviepage-submain2{
+
+        width: 21%;
+    }
+
+    .moviepage-submain2 button{
+
+        font-size: 10px;
+    }
+
+
+    .heading{
+
+        font-size: 18px;
+        
+     }
+     .user-info img{
+
+        width :120px;
+        height: 120px;
+    }
+    
+    .user-info h1{
+
+        font-size: 23px;
+    }
+
+    .user-movie h4{
+
+        font-size: 16px;
+    }
+
+    .movielist span{
+
+        font-size: 12px;
+    }
+
+    .btn{
+
+        font-size: 9px;
+    }
+
+
+    .footer-submain1 a{
+
+        font-size: 15px;
+    }
+
+    
+
+    .profilepic{
+
+        width: 230px;
+        height: 230px;
+    }
+
+    .heading1{
+
+        font-size: 18px;
+    }
+
+    .submain1-part3{
+
+        width: 25%;
+     }
+
+     .moviecontent-submain2-part1{
+
+        width : 270px ; 
+        height : 560px ;
+     }
+}
+
+@media only screen and (max-width : 460px){
+
+     
+    .submain2-part1 p{
+
+        font-size: 10px;
+      }
+
+      .heading{
+
+        font-size: 16px;
+       
+      }
+      .user-info img{
+
+        width :100px;
+        height: 100px;
+    }
+    
+    .user-info h1{
+
+        font-size: 21px;
+    }
+
+    .user-movie h4{
+
+        font-size: 15px;
+    }
+
+    .movielist span{
+
+        font-size: 11px;
+    }
+
+    .btn{
+
+        font-size: 8px;
+    }
+
+    
+      .submain1-part3-part2 button{
+
+        width: 60px;
+        height: 30px;
+      }
+
+     .profilepic{
+
+        width: 210px;
+        height: 210px;
+    }
+    .heading1{
+
+        font-size: 16px;
+    } 
+
+    .moviecontent-submain2-part1{
+
+        width : 240px ; 
+        height : 525px ;
+     }
+     .moviepage-submain1{
+
+        width: 80%;
+     }
+
+     .moviepage-submain2{
+
+        width: 60%;
+        height: 65%;
+        
+     }
+     .singlemovie-main{
+
+        margin-top: 15%;
+     }
+
+     .loading{
+
+        width: 180px;
+        height: 180px;
+     }     
+}
+*/
