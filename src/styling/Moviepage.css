@@ -1,208 +1,214 @@
-.moviepage-main{
-
-    position: absolute;
-    width: 100%;
-    min-height: 100%;
-    background-color: #141111;
-    display: grid;
-    grid-template-columns: repeat(16, 1fr);
-    grid-auto-rows: auto;
-    padding-top: 60px;
-    
-
+.moviepage-main {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  background-color: #141111;
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-auto-rows: auto;
+  padding-top: 60px;
 }
 
-.moviepage-main .moviepage-submain{
-
-    position: relative;
-    grid-column: 2/-2;
-    background-image: linear-gradient(12deg, rgba(193, 193, 193,0.05) 0%, rgba(193, 193, 193,0.05) 2%,rgba(129, 129, 129,0.05) 2%, rgba(129, 129, 129,0.05) 27%,rgba(185, 185, 185,0.05) 27%, rgba(185, 185, 185,0.05) 66%,rgba(83, 83, 83,0.05) 66%, rgba(83, 83, 83,0.05) 100%),linear-gradient(321deg, rgba(240, 240, 240,0.05) 0%, rgba(240, 240, 240,0.05) 13%,rgba(231, 231, 231,0.05) 13%, rgba(231, 231, 231,0.05) 34%,rgba(139, 139, 139,0.05) 34%, rgba(139, 139, 139,0.05) 71%,rgba(112, 112, 112,0.05) 71%, rgba(112, 112, 112,0.05) 100%),linear-gradient(236deg, rgba(189, 189, 189,0.05) 0%, rgba(189, 189, 189,0.05) 47%,rgba(138, 138, 138,0.05) 47%, rgba(138, 138, 138,0.05) 58%,rgba(108, 108, 108,0.05) 58%, rgba(108, 108, 108,0.05) 85%,rgba(143, 143, 143,0.05) 85%, rgba(143, 143, 143,0.05) 100%),linear-gradient(96deg, rgba(53, 53, 53,0.05) 0%, rgba(53, 53, 53,0.05) 53%,rgba(44, 44, 44,0.05) 53%, rgba(44, 44, 44,0.05) 82%,rgba(77, 77, 77,0.05) 82%, rgba(77, 77, 77,0.05) 98%,rgba(8, 8, 8,0.05) 98%, rgba(8, 8, 8,0.05) 100%),linear-gradient(334deg, hsl(247,0%,2%),hsl(247,0%,2%));
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 60px;
-    padding-bottom: 60px;
+.moviepage-main .moviepage-submain {
+  position: relative;
+  grid-column: 2/-2;
+  background-image: linear-gradient(
+      12deg,
+      rgba(193, 193, 193, 0.05) 0%,
+      rgba(193, 193, 193, 0.05) 2%,
+      rgba(129, 129, 129, 0.05) 2%,
+      rgba(129, 129, 129, 0.05) 27%,
+      rgba(185, 185, 185, 0.05) 27%,
+      rgba(185, 185, 185, 0.05) 66%,
+      rgba(83, 83, 83, 0.05) 66%,
+      rgba(83, 83, 83, 0.05) 100%
+    ),
+    linear-gradient(
+      321deg,
+      rgba(240, 240, 240, 0.05) 0%,
+      rgba(240, 240, 240, 0.05) 13%,
+      rgba(231, 231, 231, 0.05) 13%,
+      rgba(231, 231, 231, 0.05) 34%,
+      rgba(139, 139, 139, 0.05) 34%,
+      rgba(139, 139, 139, 0.05) 71%,
+      rgba(112, 112, 112, 0.05) 71%,
+      rgba(112, 112, 112, 0.05) 100%
+    ),
+    linear-gradient(
+      236deg,
+      rgba(189, 189, 189, 0.05) 0%,
+      rgba(189, 189, 189, 0.05) 47%,
+      rgba(138, 138, 138, 0.05) 47%,
+      rgba(138, 138, 138, 0.05) 58%,
+      rgba(108, 108, 108, 0.05) 58%,
+      rgba(108, 108, 108, 0.05) 85%,
+      rgba(143, 143, 143, 0.05) 85%,
+      rgba(143, 143, 143, 0.05) 100%
+    ),
+    linear-gradient(
+      96deg,
+      rgba(53, 53, 53, 0.05) 0%,
+      rgba(53, 53, 53, 0.05) 53%,
+      rgba(44, 44, 44, 0.05) 53%,
+      rgba(44, 44, 44, 0.05) 82%,
+      rgba(77, 77, 77, 0.05) 82%,
+      rgba(77, 77, 77, 0.05) 98%,
+      rgba(8, 8, 8, 0.05) 98%,
+      rgba(8, 8, 8, 0.05) 100%
+    ),
+    linear-gradient(334deg, hsl(247, 0%, 2%), hsl(247, 0%, 2%));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 60px;
+  padding-bottom: 60px;
 }
 
-.moviepage-main .moviepage-submain h1{
-
-    color: white;
-    font-size: 60px;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    font-family: Raleway;
-    margin-top: 15px;
-    text-align: center;
+.moviepage-main .moviepage-submain h1 {
+  color: white;
+  font-size: 60px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-family: Raleway;
+  margin-top: 15px;
+  text-align: center;
 }
 
-.moviepage-main .moviepage-submain span{
-
-    color: orange;
+.moviepage-main .moviepage-submain span {
+  color: orange;
 }
 
-.moviepage-main .moviepage-submain input{
-
-    width: 80%;
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px white solid;
-    margin-top: 15px;
-    color: white;
+.moviepage-main .moviepage-submain input {
+  width: 80%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px white solid;
+  margin-top: 15px;
+  color: white;
 }
 
-.moviepage-main .moviepage-submain .moviepage-part1{
-
-    position: relative;
-    width: 100%;
-    height: 55vh;
-    background-image: url("https://wallpapershome.com/images/wallpapers/transformers-the-last-knight-2560x1440-transformers-5-best-movies-10783.jpg");
-    background-position: center top;
-    background-size: cover;
-    background-attachment: fixed;
+.moviepage-main .moviepage-submain .moviepage-part1 {
+  position: relative;
+  width: 100%;
+  height: 55vh;
+  background-image: url("https://wallpapershome.com/images/wallpapers/transformers-the-last-knight-2560x1440-transformers-5-best-movies-10783.jpg");
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
-.moviepage-main .moviepage-submain .moviepage-part2{
-
-    position: relative;
-    width: 80%;
-    padding: 20px;
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 20px;
-    margin-bottom: 60px;
+.moviepage-main .moviepage-submain .moviepage-part2 {
+  position: relative;
+  width: 80%;
+  padding: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+  margin-bottom: 60px;
 }
 
-
-.moviepage-main .moviepage-submain .moviepage-part2 button{
-
-    background-color: darkorange;
-    color: white;
-    border: none;
-    padding: 10px;
-    text-transform: uppercase;
-    border-radius: 3px;
+.moviepage-main .moviepage-submain .moviepage-part2 button {
+  background-color: darkorange;
+  color: white;
+  border: none;
+  padding: 10px;
+  text-transform: uppercase;
+  border-radius: 3px;
 }
 
-.moviepage-main .moviepage-submain .moviepage-part3{
-
-    position: relative;
-    width: 95%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 230px));
-    grid-auto-rows:  400px;
-    grid-gap: 30px;
-    justify-content: center;
-
+.moviepage-main .moviepage-submain .moviepage-part3 {
+  position: relative;
+  width: 95%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 270px));
+  grid-auto-rows: 400px;
+  grid-gap: 30px;
+  justify-content: center;
 }
 
-.singlemovie-main{
-
-    position: relative;
+.singlemovie-main {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.singlemovie-main .singlemovie-image{
-
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 1;
-    transition: 1s all ease-in-out;
+.singlemovie-main .singlemovie-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  transition: 1s all ease-in-out;
 }
 
-.singlemovie-submain{
-
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    color: white;
-    transition: 1s all ease-in-out;
-
+.singlemovie-submain {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  color: white;
+  transition: 1s all ease-in-out;
 }
 
-.singlemovie-submain span{
-
-   text-transform: uppercase;
-   
+.singlemovie-submain span {
+  text-transform: uppercase;
 }
 
-
-.singlemovie-main:hover .singlemovie-submain{
-
-    opacity: 1;
+.singlemovie-main:hover .singlemovie-submain {
+  opacity: 1;
 }
 
-.singlemovie-main:hover .singlemovie-image{
-
-    opacity: 0.5;
+.singlemovie-main:hover .singlemovie-image {
+  opacity: 0.5;
 }
 
-.singlemovie-submain .link{
-
-    color: white;
-    font-size: 15px;
-    border: 0.5px white solid;
-    text-transform: uppercase;
-    padding: 5px;
-    border-radius: 3px;
+.singlemovie-submain .link {
+  color: white;
+  font-size: 15px;
+  border: 0.5px white solid;
+  text-transform: uppercase;
+  padding: 5px;
+  border-radius: 3px;
 }
-
 
 /*****************************************************************************************************************/
 
-@media only screen and (max-width : 660px){
-
-    .moviepage-main .moviepage-submain .moviepage-part2{
-
-        width: 100%;
-    }
+@media only screen and (max-width: 660px) {
+  .moviepage-main .moviepage-submain .moviepage-part2 {
+    width: 100%;
+  }
 }
 
+@media only screen and (max-width: 500px) {
+  .moviepage-main {
+    padding-top: 0px;
+  }
 
-@media only screen and (max-width : 500px){
+  .moviepage-main .moviepage-submain {
+    grid-column: 1/-1;
+  }
 
+  .moviepage-main .moviepage-submain .moviepage-part2 {
+    justify-content: space-between;
+  }
 
-    .moviepage-main{
-
-        padding-top: 0px;
-    }
-
-    .moviepage-main .moviepage-submain{
-
-        grid-column: 1/-1;
-    }
-
-    .moviepage-main .moviepage-submain .moviepage-part2{
-
-        justify-content: space-between;
-    }
-
-    .moviepage-main .moviepage-submain .moviepage-part2 button{
-
-        font-size: 14px;
-    }
-
+  .moviepage-main .moviepage-submain .moviepage-part2 button {
+    font-size: 14px;
+  }
 }
 
-@media only screen and (max-width : 400px){
+@media only screen and (max-width: 400px) {
+  .moviepage-main .moviepage-submain .moviepage-part2 button {
+    padding: 8px;
+    font-size: 12px;
+  }
 
-
-    .moviepage-main .moviepage-submain .moviepage-part2 button{
-
-        padding: 8px;
-        font-size: 12px;
-    }
-
-    .moviepage-main .moviepage-submain h1{
-
-        font-size: 50px;
-    }
-    
+  .moviepage-main .moviepage-submain h1 {
+    font-size: 50px;
+  }
 }
-
-

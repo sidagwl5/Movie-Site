@@ -1,178 +1,92 @@
-import React, { Component } from 'react';
-import Fire from '../scripts/Fire';
-import SingleMovie from "../components/SingleMovie"
-import Loading from "../components/Loading"
-import Header from "../components/Header"
-import * as func from "../scripts/Functions"
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import Loading from "../components/Loading";
+import SingleMovie from "../components/SingleMovie";
+import { firestore } from "../scripts/Fire";
+import * as func from "../scripts/Functions";
 
+const MoviePage = () => {
+  const [category, setCategory] = useState("all");
+  const [name, setName] = useState("");
+  const [data, setData] = useState({
+    path: [],
+    condition: false,
+  });
 
-class MoviePage extends Component {
+  useEffect(() => {
+    func.setAuthListener();
+  }, []);
 
-    constructor() {
+  useEffect(() => {
+    const moviesCollection = collection(firestore, "movies");
 
-        super()
-        this.state = {
-            path: [],
-            condition: false,
-            checked: false,
+    const whereCondition =
+      name && category !== "all"
+        ? where("name", ">=", name, "category", "==", category)
+        : name
+        ? where("name", ">=", name)
+        : category !== "all"
+        ? where("category", "==", category)
+        : orderBy("name", "asc");
 
-        }
-    }
+    getDocs(query(moviesCollection, whereCondition)).then((snapshot) => {
+      setData({
+        path: snapshot.docs.map((doc) => doc.data()),
+        condition: true,
+      });
+    });
+  }, [name, category]);
 
+  const handleChange = (e) => {
+    setName(e.target.name);
+  };
 
-    componentDidMount() {
+  const handleClick = (e) => {
+    setCategory(e.target.id);
+  };
 
+  return (
+    <div className="moviepage-main">
+      <div className="moviepage-submain">
+        <div className="moviepage-part1"></div>
 
-        func.setAuthListener()
-        Fire.firestore().collection("movies").orderBy("name").get().then(snapshot => {
-            var arr = [];
-            snapshot.forEach(doc => {
-                arr.push(doc.data())
-                this.setState({
-                    path: arr,
-                    condition: true,
+        <h1>
+          <span>Movie</span> section
+        </h1>
 
-                })
+        <input
+          type="text"
+          onChange={handleChange}
+          placeholder="Enter the name of movie..."
+        />
 
+        <div className="moviepage-part2">
+          <button id="sci-fi" onClick={handleClick}>
+            Sci-fi
+          </button>
+          <button id="anime" onClick={handleClick}>
+            Anime
+          </button>
+          <button id="horror" onClick={handleClick}>
+            Horror
+          </button>
+          <button id="all" onClick={handleClick}>
+            All
+          </button>
+        </div>
+
+        <div className="moviepage-part3">
+          {data.condition ? (
+            data.path.map((v) => {
+              return <SingleMovie {...v} />;
             })
-        })
-
-
-    }
-
-
-    handleChange(e) {
-
-        if (e.target.value === '') {
-
-            Fire.firestore().collection("movies").orderBy("name").get().then(snapshot => {
-                var arr = [];
-                snapshot.forEach(doc => {
-                    arr.push(doc.data())
-                    this.setState({
-                        path: arr,
-                        condition: true
-                    })
-
-                })
-            })
-        }
-
-        else {
-            Fire.firestore().collection("movies").where("name", ">=", e.target.value).get().then(snapshot => {
-                var arr = [];
-
-                snapshot.forEach(doc => {
-                    arr.push(doc.data())
-                    this.setState({
-                        path: arr,
-                        condition: true
-                    })
-
-                })
-            })
-
-        }
-
-        console.log(e.target.value);
-    }
-
-
-    handleClick(e) {
-
-
-        if (e.target.id != "All") {
-            Fire.firestore().collection("movies").where("category", "==", e.target.id).get().then(snapshot => {
-
-
-                if (snapshot.empty == false) {
-                    var arr = [];
-
-                    snapshot.forEach(doc => {
-                        arr.push(doc.data())
-                        this.setState({
-                            path: arr,
-                            condition: true
-                        })
-
-                    })
-                }
-                else {
-                    alert("no movies found")
-                }
-
-            })
-        }
-        else {
-
-
-            Fire.firestore().collection("movies").orderBy("name").get().then(snapshot => {
-                var arr = [];
-                snapshot.forEach(doc => {
-                    arr.push(doc.data())
-                    this.setState({
-                        path: arr,
-                        condition: true
-                    })
-
-                })
-            })
-
-
-        }
-
-
-
-    }
-
-    
-    render() {
-        return (
-            <div className="moviepage-main">
-
-                <div className="moviepage-submain">
-
-                    <div className="moviepage-part1">
-                    </div>
-
-                    <h1><span>Movie</span> section</h1>
-
-                    <input type="text" onChange={(e) => this.handleChange(e)} placeholder="Enter the name of movie..." />
-
-
-                
-                    <div className="moviepage-part2">
-
-                        <button id="Sci-fi" onClick={(e) => this.handleClick(e)}>Sci-fi</button>
-                        <button id="Anime" onClick={(e) => this.handleClick(e)}>Anime</button>
-                        <button id="Horror" onClick={(e) => this.handleClick(e)}>Horror</button>
-                        <button id="All" onClick={(e) => this.handleClick(e)}>All</button>
-
-                    </div>      
-
-                    <div className = "moviepage-part3">
-
-                    {
-                        (this.state.condition) ?
-
-                            this.state.path.map(v => {
-                                return (
-                                    <SingleMovie userId={v.userId} image={v.path} description={v.description} url={v.link} name={v.name} />
-                                )
-                            })
-
-                            : <Loading />
-
-                    }
-
-
-                    </div> 
-
-                </div>
-
-            </div>
-        );
-    }
-}
+          ) : (
+            <Loading />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default MoviePage;

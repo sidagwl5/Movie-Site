@@ -1,48 +1,38 @@
-import React, { Component } from 'react';
-import {Link} from "react-router-dom"
-import store from "./Store"
-import Fire from "../scripts/Fire"
+import { collection, doc, getDoc } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Fire, { firestore } from "../scripts/Fire";
 
-class SingleMovie extends Component {
+const SingleMovie = ({ userId, name, description, path, link }) => {
+  const [uploader, setUploader] = useState(null);
 
-    constructor(){
+  useEffect(() => {
+    const userCollection = collection(firestore, "users");
 
-        super()
-        this.state = {
+    getDoc(doc(userCollection, userId)).then((doc) => {
+      setUploader(doc.data());
+    });
+  }, []);
 
-            uploader : null
-        }
-    }
+  return (
+    <div className="singlemovie-main">
+      <img
+        className="singlemovie-image"
+        alt={name + "movie wallpaper"}
+        src={path}
+      />
 
-    componentDidMount(){
-
-             Fire.firestore().collection("Users").where("id", "==", this.props.userId).get().then(snapshot=>{
-
-                  snapshot.forEach(doc=>{
-
-                         this.setState({
-
-                            uploader : doc.data().displayName
-                         })
-                  })
-             })
-
-    }
-
-    render() {
-        return (
-            <div className = "singlemovie-main">
-                   <img className = "singlemovie-image" alt = {this.props.name + "movie wallpaper"} src = {this.props.image} />
-
-                   <div className = "singlemovie-submain">
-                   <h1 style = {{fontSize : "30px", color : "orange"}}>{this.props.name}</h1>
-                    <p><span style = {{color : "white"}}>Uploaded by</span>- {this.state.uploader}</p>
-                    <Link className = "link" to = {"/moviepage/" + this.props.name}>Click</Link>
-                   </div>    
-            </div>
-        );
-    }
-}
-
+      <div className="singlemovie-submain">
+        <h1 style={{ fontSize: "30px", color: "orange" }}>{name}</h1>
+        <p>
+          <span style={{ color: "white" }}>Uploaded by</span>- {uploader?.name}
+        </p>
+        <Link className="link" to={"/moviepage/" + name}>
+          Click
+        </Link>
+      </div>
+    </div>
+  );
+};
 
 export default SingleMovie;

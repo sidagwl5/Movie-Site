@@ -1,40 +1,38 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom"
-import MainPage from "./pages/MainPage"
-import Profile from "./pages/Profile"
-import MovieForm from './pages/MovieForm';
+import React, { Component, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  BrowserRouter,
+} from "react-router-dom";
+import MainPage from "./pages/MainPage";
+import Profile from "./pages/Profile";
+import MovieForm from "./pages/MovieForm";
 import MoviePage from "./pages/MoviePage";
 import MovieContent from "./pages/MovieContent";
 import Download from "./components/Download";
 import AOS from "aos";
-import 'aos/dist/aos.css';
+import "aos/dist/aos.css";
 
+const App = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+    });
+  }, []);
 
-
-class App extends Component {
-
-    componentDidMount() {
-
-        AOS.init({
-
-            duration: 1000
-        })
-    }
-
-    render() {
-        return (
-            <Router>
-                <div>
-                    <Route exact path="/" component={MainPage} />
-                    <Route exact path="/profile/:id" component={Profile} />
-                    <Route exact path="/addMovies" component={MovieForm} />
-                    <Route exact path="/moviepage" component={MoviePage} />
-                    <Route exact path="/moviepage/:id" component={MovieContent} />
-                    <Route exact path="/moviepage/:id/download" component={Download} />
-                </div>
-            </Router>
-        );
-    }
-}
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/addMovies" element={<MovieForm />} />
+        <Route path="/moviepage" element={<MoviePage />} />
+        <Route path="/moviepage/:id" element={<MovieContent />} />
+        <Route path="/moviepage/:id/download" element={<Download />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 export default App;

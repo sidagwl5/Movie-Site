@@ -1,139 +1,126 @@
-import firebase from "firebase";
-import Fire from "./Fire";
-import store from "../components/Store";
+import {
+  setPersistence,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+  browserLocalPersistence,
+} from "firebase/auth";
+import {
+  collection,
+  getDoc,
+  setDoc,
+  doc,
+  onSnapshot,
+} from "firebase/firestore";
 
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import Fire, { auth, firestore, storage } from "./Fire";
+import store from "../components/Store";
 
 /* for login purpose */
 
 export function Login() {
-
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+  setPersistence(auth, browserLocalPersistence)
     .then(function () {
-
-      return loginHelper()
+      loginHelper();
     })
     .catch(function (error) {
-
-      console.log("error in persistance")
+      console.error("error in persistance");
     });
 }
 
 function loginHelper() {
+  const provider = new GoogleAuthProvider();
 
-  var provider = new firebase.auth.GoogleAuthProvider();
-  Fire.auth().signInWithPopup(provider).then(function (result) {
-
-    var user = result.user;
-    addUser(user)
-
-  }).catch(function (error) {
-
-    console.log("error in loginhelper")
-  });
+  signInWithPopup(auth, provider)
+    .then(function (result) {
+      const user = result.user;
+      addUser(user);
+    })
+    .catch(function (error) {
+      console.error("error in loginhelper");
+    });
 }
-
 
 /* listener for listening to state changes */
 
 export function setAuthListener() {
-
-  firebase.auth().onAuthStateChanged(function (user) {
+  onAuthStateChanged(auth, function (user) {
     if (user) {
-      addUserListener(user.uid)
+      addUserListener(user.uid);
     } else {
-      store.unsetUser()
+      store.unsetUser();
     }
   });
 }
-
 
 /* adding new user to database */
 
 function addUser(user) {
+  const userCollection = collection(firestore, "Users");
 
-  Fire.firestore().collection("Users").doc(user.uid).get().then(doc => {
-
-    if (!doc.exists) {
-      return Fire.firestore().collection("Users").doc(user.uid).set({
+  getDoc(doc(userCollection, user.uid)).then((doc) => {
+    if (!doc.exists()) {
+      setDoc(doc(user.uid), {
         displayName: user.displayName,
         email: user.email,
         photoURL: user.photoURL,
-        id: user.uid
-      })
+        id: user.uid,
+      });
+    } else if (doc.exists) {
+      console.log("user already exists");
     }
-
-    else if (doc.exists) {
-      console.log("user already exists")
-    }
-  })
-}
-
-export function addUserListener(userId) {
-
-  Fire.firestore().collection("Users").doc(userId).onSnapshot(doc => {
-
-    if (doc.exists) {
-      store.setUser(doc.data())
-    }
-    else {
-      console.log("doc do not exists")
-    }
-
-  })
-
-}
-export function signOut() {
-
-  firebase.auth().signOut().then(function () {
-    console.log("sign out successful")
-  }).catch(function (error) {
-    console.log("sign out failed")
   });
 }
 
-export function storeImage(val, id, movieName, movieURL, movieContent, category) {
+export function addUserListener(userId) {
+  const userCollection = collection(firestore, "Users");
 
-  var uploadTask = Fire.storage().ref(`images/${val.name}`).put(val)
-
-  uploadTask.on("state_changed", (snapshot) => {
-
-    console.log(snapshot)
-  }, (err) => { console.log(err) }, () => {
-
-    Fire.storage().ref("images").child(val.name).getDownloadURL().then(url => {
-
-      console.log(url)
-
-      Fire.firestore().collection("movies").doc(val.name).get().then(doc => {
-
-        if (!doc.exists) {
-          return Fire.firestore().collection("movies").doc(val.name).set({
-
-            path: url,
-            userId: id,
-            link: movieURL,
-            name: movieName,
-            description: movieContent,
-            category: category
-
-          }).then(() => {
-
-            alert("Your Movie has been uploaded")
-          })
-
-        }
-        else {
-
-          alert("movie with same poster already exists")
-        }
-      })
-
-
-
+  onSnapshot(doc(userCollection, userId), (doc) => {
+    if (doc.exists()) {
+      store.setUser(doc.data());
+    } else {
+      console.log("doc do not exists");
     }
-
-    )
-  })
-
+  });
 }
 
+export function logOut() {
+  signOut(auth)
+    .then(function () {
+      console.log("sign out successful");
+    })
+    .catch(function (error) {
+      console.error("sign out failed");
+    });
+}
+
+export function storeImage(
+  val,
+  id,
+  movieName,
+  movieURL,
+  movieContent,
+  category
+) {
+  uploadBytes(ref(storage, `images/${val.name}`), val).then((snapshot) => {
+    getDownloadURL(ref(storage, `images/${val.name}`)).then(async (url) => {
+      const moviesCollection = collection(firestore, "movies");
+      const movieDoc = await getDoc(doc(moviesCollection, val.name));
+
+      if (!movieDoc.exists()) {
+        setDoc(doc(moviesCollection, movieName), {
+          path: url,
+          userId: id,
+          link: movieURL,
+          name: movieName,
+          description: movieContent,
+          category: category,
+        });
+      } else {
+        throw new Error("Movie with same name already exists");
+      }
+    });
+  });
+}

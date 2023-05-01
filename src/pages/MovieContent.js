@@ -1,72 +1,48 @@
-import React, { Component } from 'react'
+import { collection, doc, getDoc } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
-import Fire from "../scripts/Fire";
+import { firestore } from "../scripts/Fire";
 
-export default class MovieContent extends Component {
+const MovieContent = () => {
+  const { id } = useParams();
+  const [data, setData] = useState({
+    description: "",
+    name: "",
+    path: "",
+    category: "",
+    link: "",
+  });
 
+  useEffect(() => {
+    const moviesCollection = collection(firestore, "movies");
 
-    state = {
+    getDoc(doc(moviesCollection, id)).then((doc) => {
+      setData(doc.data());
+    });
+  }, []);
 
-        content: "",
-        name: "",
-        image: "",
-        category: "",
-        link: ""
-    }
+  return data ? (
+    <div className="movieContent-main">
+      <div className="movieContent-submain">
+        <img
+          title={data.name}
+          alt={data.name + "movie wallpaper"}
+          src={data.path}
+        />
 
-    componentDidMount() {
+        <div className="movieContent-part1">
+          <h1>Movie description</h1>
+          <h4>{data.name}</h4>
+          <h5>{data.category}</h5>
+          <p>{data.description}</p>
+          <a href={data.link}>Download</a>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <Loading />
+  );
+};
 
-
-
-
-        Fire.firestore().collection("movies").where("name", "==", this.props.match.params.id).get().then(snapshot => {
-
-            snapshot.forEach(doc => {
-
-                if (doc.exists) {
-
-                    this.setState({
-
-                        content: doc.data().description,
-                        category: doc.data().category,
-                        link: doc.data().link,
-                        image: doc.data().path,
-                        name: doc.data().name
-                    })
-                }
-                else {
-
-                    console.log("nothing")
-                }
-            })
-        })
-
-
-    }
-
-    render() {
-        return (
-
-
-            (this.state.content) ?
-                <div className="movieContent-main">
-
-                    <div className="movieContent-submain">
-
-                        <img title={this.state.name} alt={this.state.name + "movie wallpaper"} src={this.state.image} />
-
-                        <div className="movieContent-part1">
-
-                            <h1>Movie description</h1>
-                            <h4>{this.state.name}</h4>
-                            <h5>{this.state.category}</h5>
-                            <p >{this.state.content}</p>
-                            <a href={this.state.link}>Download</a>
-                        </div>
-
-                    </div>
-
-                </div> : <Loading />
-        )
-    }
-}
+export default MovieContent;
