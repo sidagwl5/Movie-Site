@@ -17,6 +17,7 @@ import {
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import Fire, { auth, firestore, storage } from "./Fire";
 import store from "../components/Store";
+import { enqueueSnackbar } from "notistack";
 
 /* for login purpose */
 
@@ -60,16 +61,16 @@ export function setAuthListener() {
 function addUser(user) {
   const userCollection = collection(firestore, "Users");
 
-  getDoc(doc(userCollection, user.uid)).then((doc) => {
-    if (!doc.exists()) {
-      setDoc(doc(user.uid), {
+  getDoc(doc(userCollection, user.uid)).then((docInstance) => {
+    if (!docInstance.exists()) {
+      setDoc(doc(userCollection, user.uid), {
         displayName: user.displayName,
         email: user.email,
         photoURL: user.photoURL,
         id: user.uid,
       });
-    } else if (doc.exists) {
-      console.log("user already exists");
+    } else {
+      console.error("user already exists");
     }
   });
 }
@@ -96,7 +97,7 @@ export function logOut() {
     });
 }
 
-export function storeImage(
+export async function storeImage(
   val,
   id,
   movieName,
@@ -104,23 +105,36 @@ export function storeImage(
   movieContent,
   category
 ) {
-  uploadBytes(ref(storage, `images/${val.name}`), val).then((snapshot) => {
-    getDownloadURL(ref(storage, `images/${val.name}`)).then(async (url) => {
-      const moviesCollection = collection(firestore, "movies");
-      const movieDoc = await getDoc(doc(moviesCollection, val.name));
+  try {
+    await uploadBytes(ref(storage, `images/${val.name}`), val);
+    const url = await getDownloadURL(ref(storage, `images/${val.name}`));
+    const moviesCollection = collection(firestore, "movies");
+    const movieDoc = await getDoc(doc(moviesCollection, val.name));
 
-      if (!movieDoc.exists()) {
-        setDoc(doc(moviesCollection, movieName), {
-          path: url,
-          userId: id,
-          link: movieURL,
-          name: movieName,
-          description: movieContent,
-          category: category,
-        });
-      } else {
-        throw new Error("Movie with same name already exists");
-      }
+    if (!movieDoc.exists()) {
+      await setDoc(doc(moviesCollection, movieName), {
+        path: url,
+        userId: id,
+        link: movieURL,
+        name: movieName,
+        description: movieContent,
+        category: category,
+      });
+
+      enqueueSnackbar({
+        variant: "success",
+        message: "Movie uploaded successfully",
+      });
+    } else {
+      throw new Error("Movie with same name already exists");
+    }
+  } catch (error) {
+    enqueueSnackbar({
+      variant: "error",
+      message:
+        error?.message ||
+        error.response?.data?.message ||
+        "Something went wrong",
     });
-  });
+  }
 }

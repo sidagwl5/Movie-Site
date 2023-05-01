@@ -5,6 +5,7 @@ import Loading from "../components/Loading";
 import { firestore } from "../scripts/Fire";
 
 const MovieContent = () => {
+  const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const [data, setData] = useState({
     description: "",
@@ -17,9 +18,13 @@ const MovieContent = () => {
   useEffect(() => {
     const moviesCollection = collection(firestore, "movies");
 
-    getDoc(doc(moviesCollection, id)).then((doc) => {
-      setData(doc.data());
-    });
+    getDoc(doc(moviesCollection, id))
+      .then((doc) => {
+        setData(doc.data());
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   return data ? (

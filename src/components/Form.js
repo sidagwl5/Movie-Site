@@ -32,26 +32,14 @@ class Form extends Component {
       this.state.url &&
       this.state.content
     ) {
-      if (this.state.content.length >= 40) {
-        if (
-          window.confirm(
-            "It is advisable to enter image of size less than 1mb as it drastically improves the uploading speed"
-          )
-        ) {
-          func.storeImage(
-            this.state.image,
-            store.User.id,
-            this.state.data,
-            this.state.url,
-            this.state.content,
-            this.state.category
-          );
-        } else {
-          return false;
-        }
-      } else {
-        alert("Description should be of atleast 40 words!!");
-      }
+      func.storeImage(
+        this.state.image,
+        store.User.id,
+        this.state.data,
+        this.state.url,
+        this.state.content,
+        this.state.category
+      );
     } else {
       alert("You are requested to enter all the details");
     }
