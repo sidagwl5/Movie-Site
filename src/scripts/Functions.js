@@ -82,7 +82,7 @@ export function addUserListener(userId) {
     if (doc.exists()) {
       store.setUser(doc.data());
     } else {
-      console.log("doc do not exists");
+      console.error("doc do not exists");
     }
   });
 }
@@ -90,10 +90,16 @@ export function addUserListener(userId) {
 export function logOut() {
   signOut(auth)
     .then(function () {
-      console.log("sign out successful");
+      enqueueSnackbar({
+        variant: "success",
+        message: "Successfully logged out",
+      });
     })
     .catch(function (error) {
-      console.error("sign out failed");
+      enqueueSnackbar({
+        variant: "error",
+        message: error?.message ?? "Something went wrong",
+      });
     });
 }
 

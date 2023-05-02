@@ -2,54 +2,48 @@ import {
   collection,
   deleteDoc,
   doc,
-  getDocs,
+  onSnapshot,
   query,
   where,
 } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
 import { observer } from "mobx-react";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import store from "../components/Store";
 import { firestore, storage } from "../scripts/Fire";
 import * as func from "../scripts/Functions";
+import "../styling/Profile.css";
 
 const Profile = () => {
-  const { id } = useParams();
   const [data, setData] = useState({
     path: [],
     condition: false,
   });
 
   useEffect(() => {
-    const name = id;
-
     func.setAuthListener();
 
     const moviesCollection = collection(firestore, "movies");
 
-    getDocs(
-      query(moviesCollection, where("userId", "==", store.User?.id))
-    ).then((snapshot) => {
-      const arr = [];
-      snapshot.docChanges().forEach((change) => {
-        if (change.type == "added") {
-          arr.push(change.doc.data());
-          this.setState({
-            path: arr,
-            condition: true,
-          });
-        } else if (change.type == "removed") {
-          arr = arr.filter((v) => {
-            return v.name != change.doc.data().name;
-          });
-          this.setState({
-            path: arr,
-            condition: true,
-          });
-        }
-      });
-    });
+    const subscribe = onSnapshot(
+      query(moviesCollection, where("userId", "==", store.user?.id)),
+      (snapshot) => {
+        const arr = [];
+        snapshot.docChanges().forEach((change) => {
+          if (change.type == "added") {
+            arr.push(change.doc.data());
+          }
+        });
+
+        setData({
+          path: arr,
+          condition: true,
+        });
+      }
+    );
+
+    return subscribe;
   }, []);
 
   const handleClick = async (e) => {
@@ -65,11 +59,11 @@ const Profile = () => {
       <div className="profile-main2">
         <div className="profile-main2-part1">
           <div className="user-info">
-            <img src={store.User.photoURL} />
-            <h1>{store.User.displayName}</h1>
+            <img src={store.user?.photoURL} />
+            <h1>{store.user?.displayName}</h1>
             <Link to="/">
               <button
-                style={{ marginBottom: "5%" }}
+                style={{ marginBottom: "5%", color: "white" }}
                 className="btn"
                 onClick={func.logOut}
               >
@@ -77,7 +71,12 @@ const Profile = () => {
               </button>
             </Link>
             <Link to="/moviepage">
-              <button className="btn">MoviePage</button>
+              <button
+                style={{ marginBottom: "5%", color: "white" }}
+                className="btn"
+              >
+                MoviePage
+              </button>
             </Link>
           </div>
           <div className="user-movie">

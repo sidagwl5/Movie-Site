@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 class AddMovies extends Component {
   render() {
-    return store.isLoggedIn ? (
+    return store.user ? (
       <Link className="addmovies-link" to="/addMovies">
         <button>Add</button>
       </Link>

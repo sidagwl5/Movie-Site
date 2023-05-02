@@ -35,7 +35,7 @@ class Form extends Component {
     ) {
       func.storeImage(
         this.state.image,
-        store.User.id,
+        store.user.id,
         this.state.data,
         this.state.url,
         this.state.content,

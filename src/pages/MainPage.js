@@ -1,25 +1,23 @@
-import React, { Component } from "react";
-import * as func from "../scripts/Functions";
-import Content from "../components/Content";
 import { observer } from "mobx-react";
+import React, { useEffect } from "react";
+import Content from "../components/Content";
 import Section from "../components/Section";
-import Footer from "../components/Footer";
+import * as func from "../scripts/Functions";
 
-class MainPage extends Component {
-  componentDidMount() {
+const MainPage = () => {
+  useEffect(() => {
     func.setAuthListener();
-  }
-  render() {
-    return (
-      <div className="mainpage-main1">
-        <div className="mainpage-submain1">
-          <Section />
-          <Content />
-          {/* <Footer /> */}
-        </div>
+  }, []);
+
+  return (
+    <div className="mainpage-main1">
+      <div className="mainpage-submain1">
+        <Section />
+        <Content />
+        {/* <Footer /> */}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default observer(MainPage);

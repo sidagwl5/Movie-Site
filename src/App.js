@@ -5,7 +5,13 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { SnackbarProvider } from "notistack";
 import React, { useEffect } from "react";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 import { Alert } from "./components/Alert";
 import Download from "./components/Download";
 import store from "./components/Store";
@@ -22,7 +28,22 @@ const Authenticated = observer(() => {
     setAuthListener();
   }, []);
 
-  return store.loading ? <CircularProgress /> : <Outlet />;
+  return store.loading ? (
+    <CircularProgress
+      size={24}
+      style={{
+        color: "white",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    />
+  ) : store.user ? (
+    <Outlet />
+  ) : (
+    <Navigate to={"/"} />
+  );
 });
 
 const App = () => {
@@ -56,7 +77,7 @@ const App = () => {
           <Route path="/moviepage/:id/download" element={<Download />} />
 
           <Route element={<Authenticated />}>
-            <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/addMovies" element={<MovieForm />} />
           </Route>
         </Routes>
