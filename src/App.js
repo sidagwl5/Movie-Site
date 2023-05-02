@@ -1,17 +1,29 @@
-import React, { Component, useEffect } from "react";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
-import MainPage from "./pages/MainPage";
-import Profile from "./pages/Profile";
-import MovieForm from "./pages/MovieForm";
-import MoviePage from "./pages/MoviePage";
-import MovieContent from "./pages/MovieContent";
-import Download from "./components/Download";
+import "./twind.config";
+import { CircularProgress } from "@mui/material";
+import { tx } from "@twind/core";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import "./twind.config";
-import { tx } from "@twind/core";
-import { Alert } from "./components/Alert";
 import { SnackbarProvider } from "notistack";
+import React, { useEffect } from "react";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { Alert } from "./components/Alert";
+import Download from "./components/Download";
+import store from "./components/Store";
+import MainPage from "./pages/MainPage";
+import MovieContent from "./pages/MovieContent";
+import MovieForm from "./pages/MovieForm";
+import MoviePage from "./pages/MoviePage";
+import Profile from "./pages/Profile";
+import { setAuthListener } from "./scripts/Functions";
+import { observer } from "mobx-react";
+
+const Authenticated = observer(() => {
+  useEffect(() => {
+    setAuthListener();
+  }, []);
+
+  return store.loading ? <CircularProgress /> : <Outlet />;
+});
 
 const App = () => {
   useEffect(() => {
@@ -39,11 +51,14 @@ const App = () => {
       >
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/profile/:id" element={<Profile />} />
-          <Route path="/addMovies" element={<MovieForm />} />
           <Route path="/moviepage" element={<MoviePage />} />
           <Route path="/moviepage/:id" element={<MovieContent />} />
           <Route path="/moviepage/:id/download" element={<Download />} />
+
+          <Route element={<Authenticated />}>
+            <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/addMovies" element={<MovieForm />} />
+          </Route>
         </Routes>
       </SnackbarProvider>
     </BrowserRouter>

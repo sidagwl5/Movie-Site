@@ -1,29 +1,30 @@
-import {observable  , action , decorate} from "mobx"
+import { observable, action, decorate } from "mobx";
 
 class Store {
+  User = {};
+  isLoggedIn = false;
+  loading = true;
 
-   User =  {};
-   isLoggedIn = false;
-  
-    setUser(user){
-       this.User = user
-       this.isLoggedIn = true;
-    }
+  setUser(user) {
+    this.User = user;
+    this.isLoggedIn = true;
+    this.loading = false;
+  }
 
-    unsetUser(){
-
-        this.User = {};
-        this.isLoggedIn = false;
-    }
+  unsetUser() {
+    this.User = {};
+    this.isLoggedIn = false;
+    this.loading = false;
+  }
 }
 
-decorate(Store,{
+decorate(Store, {
+  User: observable,
+  isLoggedIn: observable,
+  loading: observable,
+  setUser: action,
+});
 
-     User : observable,
-     isLoggedIn : observable,
-     setUser : action
-})
+const store = new Store();
 
-const store = new Store()
-
-export default store
+export default store;

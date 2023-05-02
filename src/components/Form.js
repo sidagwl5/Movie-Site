@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as func from "../scripts/Functions";
 import store from "./Store";
+import { enqueueSnackbar } from "notistack";
 
 class Form extends Component {
   constructor() {
@@ -41,7 +42,10 @@ class Form extends Component {
         this.state.category
       );
     } else {
-      alert("You are requested to enter all the details");
+      enqueueSnackbar({
+        variant: "error",
+        message: "Please enter all the details",
+      });
     }
   }
 

@@ -1,31 +1,23 @@
-.mainpage-main1{
-
-     position: absolute;
-     width: 100%;
-     height: 100vh;
-     display: grid;
-     grid-template-columns: repeat(12, 1fr);
-     padding-top: 70px;
-
+.mainpage-main1 {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  padding: 70px 20px;
 }
 
-.mainpage-main1 .mainpage-submain1{
-
-
-    position: relative;
-    grid-column: 2/-2;
-    margin-bottom: 50px;
+.mainpage-main1 .mainpage-submain1 {
+  position: relative;
+  grid-column: 2/-2;
 }
 
-@media only screen and (max-width : 610px){
+@media only screen and (max-width: 610px) {
+  .mainpage-main1 .mainpage-submain1 {
+    grid-column: 1/-1;
+  }
 
-    .mainpage-main1 .mainpage-submain1{
-
-        grid-column: 1/-1;
-    }
-
-    .mainpage-main1{
-
-        padding-top: 0px;
-    }
+  .mainpage-main1 {
+    padding-top: 0px;
+  }
 }

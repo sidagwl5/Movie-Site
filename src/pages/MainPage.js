@@ -15,7 +15,7 @@ class MainPage extends Component {
         <div className="mainpage-submain1">
           <Section />
           <Content />
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </div>
     );
