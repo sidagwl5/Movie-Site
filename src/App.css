@@ -8,6 +8,7 @@
 @import "./styling/Moviepage.css";
 @import "./styling/MovieContent.css";
 @import "./styling/MovieForm.css";
+@import "./styling/Profile.css";
 
 body {
   margin: 0;
