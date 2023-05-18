@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Content = () => {
   return (
-    <div className="content-main1">
+    <div className={tx("content-main1")}>
       <h1>About</h1>
 
       <p className={tx("opacity-90 font-light mt-2")}>
