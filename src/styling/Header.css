@@ -1,45 +1,36 @@
-.header-main1{
-
-    position: absolute;
-    z-index: 600;
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px;
-    width: 100%;
-    align-items: center;
+.header-main1 {
+  z-index: 600;
+  display: flex;
+  justify-content: flex-end;
+  padding: 2vw;
+  width: 100%;
+  align-items: center;
 }
 
-.loginbutton-button{
-
-    background-color: transparent;
-    color: white;
-    font-size: 20px;
-    border: none;
-    text-transform: uppercase;
-    font-weight: lighter;
-
+.loginbutton-button {
+  background-color: transparent;
+  color: white;
+  font-size: 20px;
+  border: none;
+  text-transform: uppercase;
+  font-weight: lighter;
 }
 
-
-.loginbutton-link img{
-
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+.loginbutton-link img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
-
-.addmovies-link{
-
-    margin-right: auto;
+.addmovies-link {
+  margin-right: auto;
 }
 
-.addmovies-link button{
-
-    background-color: transparent;
-    font-size: 25px;
-    color: white;
-    border: none;
-    text-transform: uppercase;
-    font-weight: lighter;
+.addmovies-link button {
+  background-color: transparent;
+  font-size: 18px;
+  color: white;
+  border: none;
+  text-transform: uppercase;
+  font-weight: lighter;
 }

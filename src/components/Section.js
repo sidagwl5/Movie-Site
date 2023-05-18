@@ -1,13 +1,10 @@
 import { observer } from "mobx-react";
 import React from "react";
-import Header from "../components/Header";
 import store from "./Store";
 
 const Section = () => {
   return (
     <div data-aos="fade-right" className="section-main1">
-      <Header />
-
       {store.user ? (
         <div className="section-submain1" />
       ) : (

@@ -5,7 +5,6 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
-  background-image: url("https://wallpaperaccess.com/full/300507.jpg");
   background-position: center bottom;
   background-size: cover;
 }

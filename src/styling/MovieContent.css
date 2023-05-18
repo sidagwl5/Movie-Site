@@ -1,12 +1,7 @@
 .movieContent-main {
   position: absolute;
   width: 100%;
-  min-height: 100vh;
-  background-image: radial-gradient(
-    circle at center right,
-    rgb(202, 57, 146),
-    rgb(11, 5, 110)
-  );
+  height: 100vh;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(16, 1fr);
@@ -45,20 +40,26 @@
   font-weight: normal;
 }
 
-.movieContent-main .movieContent-submain .movieContent-part1 h4 {
+.movieContent-main .movieContent-submain .movieContent-part1 h3 {
   color: white;
-  font-size: 35px;
+  font-size: 40px;
+  margin-bottom: 1rem;
+  font-weight: 600;
 }
 
 .movieContent-main .movieContent-submain .movieContent-part1 h5 {
   color: white;
-  font-size: 25px;
+  font-size: 12px;
+  border: 2px #9c8500 solid;
+  border-radius: 20px;
+  padding: 0.3rem 0.8rem;
 }
 
 .movieContent-main .movieContent-submain .movieContent-part1 p {
   color: white;
   width: 90%;
   word-break: break-all;
+  font-size: 18px;
 }
 
 .movieContent-main .movieContent-submain .movieContent-part1 a {

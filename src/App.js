@@ -11,6 +11,7 @@ import {
   Outlet,
   Route,
   Routes,
+  useLocation,
 } from "react-router-dom";
 import { Alert } from "./components/Alert";
 import Download from "./components/Download";
@@ -22,6 +23,32 @@ import MoviePage from "./pages/MoviePage";
 import Profile from "./pages/Profile";
 import { setAuthListener } from "./scripts/Functions";
 import { observer } from "mobx-react";
+import Header from "./components/Header";
+import { tw } from "twind";
+
+const AllRoutes = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    console.log("here!");
+
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return (
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/moviepage" element={<MoviePage />} />
+      <Route path="/moviepage/:id" element={<MovieContent />} />
+      <Route path="/moviepage/:id/download" element={<Download />} />
+
+      <Route element={<Authenticated />}>
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/addMovies" element={<MovieForm />} />
+      </Route>
+    </Routes>
+  );
+};
 
 const Authenticated = observer(() => {
   useEffect(() => {
@@ -70,17 +97,22 @@ const App = () => {
           warning: Alert,
         }}
       >
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/moviepage" element={<MoviePage />} />
-          <Route path="/moviepage/:id" element={<MovieContent />} />
-          <Route path="/moviepage/:id/download" element={<Download />} />
+        <div
+          style={{
+            position: "relative",
+            background: "#141111",
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+            height: "100vh",
+          }}
+        >
+          <Header />
 
-          <Route element={<Authenticated />}>
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/addMovies" element={<MovieForm />} />
-          </Route>
-        </Routes>
+          <div className={tw("flex-1 min-h-0 min-w-0 relative")}>
+            <AllRoutes />
+          </div>
+        </div>
       </SnackbarProvider>
     </BrowserRouter>
   );

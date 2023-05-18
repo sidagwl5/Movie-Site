@@ -3,17 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import { firestore } from "../scripts/Fire";
+import { CircularProgress } from "@mui/material";
+import { tw } from "twind";
 
 const MovieContent = () => {
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-  const [data, setData] = useState({
-    description: "",
-    name: "",
-    path: "",
-    category: "",
-    link: "",
-  });
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     const moviesCollection = collection(firestore, "movies");
@@ -36,17 +32,29 @@ const MovieContent = () => {
           src={data.path}
         />
 
-        <div className="movieContent-part1">
-          <h1>Movie description</h1>
-          <h4>{data.name}</h4>
-          <h5>{data.category}</h5>
+        <div className={tw("movieContent-part1", "gap-2 flex flex-col")}>
+          <h3>{data.name}</h3>
           <p>{data.description}</p>
+          <h5>{data.category}</h5>
           <a href={data.link}>Download</a>
         </div>
       </div>
     </div>
+  ) : loading ? (
+    <CircularProgress
+      size={24}
+      className={tw(
+        "text-white absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]"
+      )}
+    />
   ) : (
-    <Loading />
+    <p
+      className={tw(
+        "text-white absolute opacity-80 top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]"
+      )}
+    >
+      No such movie found...
+    </p>
   );
 };
 

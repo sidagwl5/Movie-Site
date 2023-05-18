@@ -54,65 +54,53 @@ const Profile = () => {
   };
 
   return (
-    <div style={{ width: "100%", height: "100vh", position: "relative" }}>
-      <div className="profile-main"></div>
-      <div className="profile-main2">
-        <div className="profile-main2-part1">
-          <div className="user-info">
-            <img src={store.user?.photoURL} />
-            <h1>{store.user?.displayName}</h1>
-            <Link to="/">
-              <button
-                style={{ marginBottom: "5%", color: "white" }}
-                className="btn"
-                onClick={func.logOut}
-              >
-                Sign-Out
-              </button>
-            </Link>
-            <Link to="/moviepage">
-              <button
-                style={{ marginBottom: "5%", color: "white" }}
-                className="btn"
-              >
-                MoviePage
-              </button>
-            </Link>
-          </div>
-          <div className="user-movie">
-            <h4>Movies Uploaded</h4>
-            {data.condition
-              ? data.path.map((v) => {
-                  return (
-                    <div
-                      className="movielist"
+    <div className="profile-main2">
+      <div className="profile-main2-part1">
+        <div className="user-info">
+          <img src={store.user?.photoURL} />
+          <h1>{store.user?.displayName}</h1>
+          <Link to="/moviepage">
+            <button
+              style={{ marginBottom: "5%", color: "white" }}
+              className="btn"
+            >
+              MoviePage
+            </button>
+          </Link>
+        </div>
+        <div className="user-movie">
+          <h4>Movies Uploaded</h4>
+          {data.condition
+            ? data.path.map((v) => {
+                return (
+                  <div
+                    className="movielist"
+                    style={{
+                      backgroundColor: "rgba(0,0,0,0.2)",
+                      width: "50%",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      marginTop: "4px",
+                      padding: "10px",
+                    }}
+                  >
+                    <span>{v.name}</span>
+                    <button
                       style={{
-                        backgroundColor: "rgba(0,0,0,0.2)",
-                        width: "50%",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        marginTop: "4px",
-                        padding: "10px",
+                        borderRadius: "4px",
+                        border: "none",
+                        backgroundColor: "rgba(0,0,0,0.4)",
+                        color: "white",
                       }}
+                      id={v.name}
+                      onClick={handleClick}
                     >
-                      <span>{v.name}</span>
-                      <button
-                        style={{
-                          borderRadius: "4px",
-                          border: "none",
-                          backgroundColor: "rgba(0,0,0,0.4)",
-                          color: "white",
-                        }}
-                        id={v.name}
-                        onClick={handleClick}
-                      >
-                        x
-                      </button>
-                    </div>
-                  );
-                })
-              : null}
-          </div>
+                      x
+                    </button>
+                  </div>
+                );
+              })
+            : null}
         </div>
       </div>
     </div>

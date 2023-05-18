@@ -14,9 +14,24 @@ body {
   margin: 0;
   padding: 0;
   overflow-y: auto;
-  background-color: #1b1b1b;
+  background-color: #141111;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/*** Scrollbar ***/
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: white;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
 }
