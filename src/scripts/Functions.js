@@ -104,12 +104,14 @@ export function logOut() {
 }
 
 export async function storeImage(
-  val,
   id,
-  movieName,
-  movieURL,
-  movieContent,
-  category
+  {
+    image: val,
+    data: movieName,
+    url: movieURL,
+    content: movieContent,
+    category,
+  }
 ) {
   try {
     await uploadBytes(ref(storage, `images/${val.name}`), val);

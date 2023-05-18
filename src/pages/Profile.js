@@ -59,14 +59,6 @@ const Profile = () => {
         <div className="user-info">
           <img src={store.user?.photoURL} />
           <h1>{store.user?.displayName}</h1>
-          <Link to="/moviepage">
-            <button
-              style={{ marginBottom: "5%", color: "white" }}
-              className="btn"
-            >
-              MoviePage
-            </button>
-          </Link>
         </div>
         <div className="user-movie">
           <h4>Movies Uploaded</h4>

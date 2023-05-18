@@ -151,7 +151,7 @@
   height: 100%;
   opacity: 0;
   color: white;
-  transition: 1s all ease-in-out;
+  transition: 0.5s all ease-in-out;
 }
 
 .singlemovie-submain span {
