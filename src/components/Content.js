@@ -1,14 +1,14 @@
-import { tx } from "@twind/core";
 import { observer } from "mobx-react";
 import React from "react";
 import { Link } from "react-router-dom";
+import { tw } from "twind";
 
 const Content = () => {
   return (
-    <div className={tx("content-main1")}>
+    <div className={tw("content-main1")}>
       <h1>About</h1>
 
-      <p className={tx("opacity-90 font-light mt-2")}>
+      <p className={tw("opacity-90 font-light mt-2")}>
         Film, also called movie or motion picture, is a medium used to simulate
         experiences that communicate ideas, stories, perceptions, feelings,
         beauty or atmosphere by the means of recorded or programmed moving
@@ -17,7 +17,7 @@ const Content = () => {
         industry, and to the art form that is the result of it.
       </p>
 
-      <p className={tx("opacity-90 font-light mt-4")}>
+      <p className={tw("opacity-90 font-light mt-4")}>
         The moving images of a film are created by photographing actual scenes
         with a motion-picture camera, by photographing drawings or miniature
         models using traditional animation techniques, by means of CGI and
