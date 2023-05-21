@@ -4,6 +4,8 @@ import Loading from "../components/Loading";
 import SingleMovie from "../components/SingleMovie";
 import { firestore } from "../scripts/Fire";
 import * as func from "../scripts/Functions";
+import { tw } from "twind";
+import { CircularProgress } from "@mui/material";
 
 const MoviePage = () => {
   const [category, setCategory] = useState("all");
@@ -38,7 +40,7 @@ const MoviePage = () => {
   }, [name, category]);
 
   const handleChange = (e) => {
-    setName(e.target.name);
+    setName(e.target.value);
   };
 
   const handleClick = (e) => {
@@ -76,12 +78,29 @@ const MoviePage = () => {
         </div>
 
         <div className="moviepage-part3">
-          {data.condition ? (
+          {data.path.length ? (
             data.path.map((v) => {
               return <SingleMovie {...v} />;
             })
+          ) : !data.condition ? (
+            <p
+              className={tw(
+                "w-full flex justify-center items-center italic text-white"
+              )}
+            >
+              <CircularProgress
+                size={20}
+                className={tw("text-white! opacity-80")}
+              />
+            </p>
           ) : (
-            <Loading />
+            <p
+              className={tw(
+                "w-full flex justify-center items-center italic text-white opacity-60"
+              )}
+            >
+              No movies present
+            </p>
           )}
         </div>
       </div>

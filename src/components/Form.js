@@ -3,11 +3,12 @@ import { Controller, useForm } from "react-hook-form";
 import * as func from "../scripts/Functions";
 import store from "./Store";
 import { TextInput } from "./TextInput";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { tw } from "twind/style";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import CloseIcon from "@mui/icons-material/Close";
+import { Select } from "./Select";
 
 const Form = () => {
   const fileRef = useRef(null);
@@ -19,6 +20,7 @@ const Form = () => {
       data: "",
       url: "",
       content: "",
+      category: "sci-fi",
     },
   });
 
@@ -154,7 +156,7 @@ const Form = () => {
           fieldState: { error },
           field: { ref, value, onChange },
         }) => (
-          <TextInput
+          <Select
             label="Category*"
             id="category"
             onChange={onChange}
@@ -162,7 +164,11 @@ const Form = () => {
             errorMessage={error?.message}
             ref={ref}
             value={value}
-          />
+          >
+            <MenuItem value={"anime"}>Anime</MenuItem>
+            <MenuItem value={"sci-fi"}>Sci-fi</MenuItem>
+            <MenuItem value={"horror"}>Horror</MenuItem>
+          </Select>
         )}
       />
 

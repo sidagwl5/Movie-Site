@@ -51,8 +51,8 @@ const Profile = () => {
   const handleClick = async (e) => {
     const moviesCollection = collection(firestore, "movies");
 
-    await deleteDoc(doc(moviesCollection, e.target.id));
-    await deleteObject(ref(storage, `/images/${e.target.id}`));
+    await deleteDoc(doc(moviesCollection, e.currentTarget.id));
+    await deleteObject(ref(storage, `/images/${e.currentTarget.id}`));
   };
 
   return (
@@ -71,35 +71,33 @@ const Profile = () => {
           )}
         >
           {data.condition
-            ? Array(40)
-                .fill(data.path)
-                .map((v) => {
-                  return (
-                    <div
-                      className={tw("movielist", "w-full")}
-                      style={{
-                        alignItems: "center",
-                        backgroundColor: "rgba(255,255,255,0.1)",
+            ? data.path.map((v) => {
+                return (
+                  <div
+                    className={tw("movielist", "w-full")}
+                    style={{
+                      alignItems: "center",
+                      backgroundColor: "rgba(255,255,255,0.1)",
 
-                        display: "flex",
-                        justifyContent: "space-between",
-                        marginTop: "4px",
-                        padding: "5px 10px",
-                      }}
+                      display: "flex",
+                      justifyContent: "space-between",
+                      marginTop: "4px",
+                      padding: "5px 10px",
+                    }}
+                  >
+                    <span>{v.name}</span>
+                    <IconButton
+                      size={"small"}
+                      id={v.name}
+                      onClick={handleClick}
                     >
-                      <span>{v.name}</span>
-                      <IconButton
-                        size={"small"}
-                        id={v.name}
-                        onClick={handleClick}
-                      >
-                        <CloseIcon
-                          className={tw("text-lg! text-white opacity-80!")}
-                        />
-                      </IconButton>
-                    </div>
-                  );
-                })
+                      <CloseIcon
+                        className={tw("text-lg! text-white opacity-80!")}
+                      />
+                    </IconButton>
+                  </div>
+                );
+              })
             : null}
         </div>
       </div>
