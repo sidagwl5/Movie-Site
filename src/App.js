@@ -30,8 +30,6 @@ const AllRoutes = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    console.log("here!");
-
     window.scrollTo(0, 0);
   }, [pathname]);
 
@@ -109,7 +107,7 @@ const App = () => {
         >
           <Header />
 
-          <div className={tw("flex-1 min-h-0 min-w-0 relative")}>
+          <div className={tw("flex-1 min-w-0 relative pt-2! pb-5!")}>
             <AllRoutes />
           </div>
         </div>

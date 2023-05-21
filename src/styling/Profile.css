@@ -1,44 +1,44 @@
 .profile-main2 {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
   position: relative;
+  justify-content: space-around;
+  color: white;
 }
 
 .profile-main2-part1 {
   width: 100%;
-  height: 60%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   color: white;
 }
 
 .user-info {
-  width: 30%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  gap: 0.6rem;
 }
 
 .user-info img {
-  width: 200px;
-  height: 200px;
+  max-width: 120px;
+  max-height: 120px;
+  min-width: 120px;
+  min-height: 120px;
   border-radius: 50%;
 }
 
 .user-movie {
-  width: 50%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-right: 4%;
 }
 .heading {
   position: absolute;

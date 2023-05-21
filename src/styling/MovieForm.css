@@ -1,10 +1,8 @@
 .movieForm-main {
   position: relative;
   width: 100%;
-  min-height: 100vh;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(12, 1fr);
   background-position: center bottom;
   background-size: cover;
 }
@@ -12,14 +10,13 @@
 .form-main {
   position: relative;
   grid-column: 5/-5;
-  grid-row: 2/-2;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
   border-left: 0.5px white solid;
   padding-left: 10px;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .form-main h1 {
@@ -67,13 +64,13 @@
 
 /*************************************************************************************************************************************/
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
   .form-main {
     grid-column: 4/-4;
   }
 }
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 640px) {
   .form-main {
     grid-column: 2/-2;
   }
