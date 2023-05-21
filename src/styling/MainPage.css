@@ -4,7 +4,6 @@
   min-height: 100vh;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  padding: 70px 20px;
 }
 
 .mainpage-main1 .mainpage-submain1 {

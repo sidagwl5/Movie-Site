@@ -19,6 +19,7 @@
   justify-content: space-between;
   border-left: 0.5px white solid;
   padding-left: 10px;
+  gap: 1rem;
 }
 
 .form-main h1 {
@@ -74,7 +75,7 @@
 
 @media only screen and (max-width: 425px) {
   .form-main {
-    grid-column: 3/-3;
+    grid-column: 2/-2;
   }
 
   .form-main h1 {

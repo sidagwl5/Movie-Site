@@ -26,7 +26,7 @@ export const TextInput = forwardRef(
           ref={ref}
         />
         {errorMessage && (
-          <p className={tw("text-xs -mt-1 font-semibold text-red-400")}>
+          <p className={tw("text-xs font-semibold text-red-400")}>
             {errorMessage}
           </p>
         )}

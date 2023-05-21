@@ -2,7 +2,6 @@
   z-index: 600;
   display: flex;
   justify-content: flex-end;
-  padding: 2vw;
   width: 100%;
   align-items: center;
 }
@@ -10,7 +9,6 @@
 .loginbutton-button {
   background-color: transparent;
   color: white;
-  font-size: 20px;
   border: none;
   text-transform: uppercase;
   font-weight: lighter;
@@ -28,7 +26,6 @@
 
 .addmovies-link button {
   background-color: transparent;
-  font-size: 18px;
   color: white;
   border: none;
   text-transform: uppercase;
